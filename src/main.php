@@ -2,8 +2,10 @@
 //Cargar el archivo TourCMS.php para importar las funciones, clases, etc. ya definidas en dicho archivo
 require_once "TourCMS.php";
 
-//Insertar credenciales a continuación (las he borrado intencionadamente antes del commit y el push por motivos de seguridad) para conectarme a la API
-
+//Insertar credenciales a continuación (las he borrado intencionadamente antes de cada commit y push por motivos de seguridad) para conectarme a la API
+$marketplace_id = ;
+$api_key = ;
+$channel_id = ;
 
 // Crear la instancia de TourCMS usando un namespace
 use TourCMS\Utils\TourCMS as TourCMS;
@@ -19,6 +21,29 @@ $params = "product_type=4&country=ES&search=" . urlencode($search_term);
 
 // Hacer la call a la API utilizando la función search_tours
 $result = $tourcms->search_tours($params, $channel_id);
+
+    // Verificar si la respuesta de la API es un string
+    // Si es así, convertir la respuesta en SimpleXMLElement
+    // Todo esto es porque $result me estaba dando error en la línea 34 porque no podía acceder a ->tour 
+    if (is_string($result)) {
+        $result = simplexml_load_string($result);
+    }
+
+    // Procesar los resultados obtenidos
+    if ($result !== !empty($result) && isset($result->tour)) {
+        foreach ($result->tour as $tour) {
+            // Pedir a la API todos los detalles necesarios de cada tour para que aparezcan en la web
+            $tour_name = (string) $tour->tour_name;
+            $tour_url = (string) $tour->tour_url;
+            $summary = (string) $tour->summary;
+            $thumbnail_image = (string) $tour->thumbnail_image;
+            $duration_desc = (string) $tour->duration_desc;
+            $location = (string) $tour->location;
+            $from_price = (string) $tour->from_price;
+            }
+    } else {
+            $results_html = "<p>No se encontraron resultados para '{$search_term}'.</p>";
+    }
 
 ?>
 

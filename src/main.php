@@ -30,7 +30,7 @@ $result = $tourcms->search_tours($params, $channel_id);
     }
 
     // Procesar los resultados obtenidos y escribir el código de HTML para mostrarlos en la web
-    if ($result !== !empty($result) && isset($result->tour)) {
+    if (!empty($result) && isset($result->tour)) {
         foreach ($result->tour as $tour) {
             // Pedir a la API todos los detalles necesarios de cada tour para que aparezcan en la web
             $tour_name = (string) $tour->tour_name;

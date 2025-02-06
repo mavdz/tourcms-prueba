@@ -1,0 +1,61 @@
+/* Cuerpo y header principal */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f4f4f4;
+    text-align: center;
+    color: #333;
+}
+
+h2 {
+    text-align: center;
+    color: #222;
+}
+
+/* Contenedor de los tours */
+.tour-item {
+    background: white;
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 600px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+}
+
+.tour-item:hover {
+    transform: translateY(-5px);
+}
+
+/* Links a los tours */
+.tour-item h3 a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.tour-item h3 a:hover {
+    text-decoration: underline;
+}
+
+/* Imágenes */
+.tour-item img {
+    width: 100%;
+    max-height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-top: 10px;
+}
+
+/* Texto de los tours */
+.tour-item p {
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* Ajustar la pantalla a dispositivos móviles */
+@media (max-width: 768px) {
+    .tour-item {
+        max-width: 90%;
+    }
+}

@@ -44,7 +44,7 @@ $result = $tourcms->search_tours($params, $channel_id);
             // Utilizar la variable results_html para mostrar en la web cada uno de los resultados obtenidos de la búsqueda
             $results_html .= "<div class='tour-item'>";
             $results_html .= "<h3><a href='{$tour_url}' target='_blank'>{$tour_name}</a></h3>";
-            $results_html .= "<p><strong>Resumen:</strong> {$summary}</p>";
+            $results_html .= "<p><strong>Descripción:</strong> {$summary}</p>";
             $results_html .= "<p><strong>Ubicación:</strong> {$location}</p>";
             $results_html .= "<p><strong>Duración:</strong> {$duration_desc}</p>";
             $results_html .= "<p><strong>Desde:</strong> {$from_price} EUR</p>";
@@ -60,14 +60,16 @@ $result = $tourcms->search_tours($params, $channel_id);
 <!-- Aquí dejo el código de una web sencilla que mostrará los resultados nada más abrirse-->
 <!DOCTYPE html>
 <html lang="en_GB">
-<head>
+    <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
     <title>Tours, viajes, actividades y atracciones de un solo día en España</title>
 </head>
 <body>
 
     <h2>Aquí tienes una lista con los tours, viajes, actividades y atracciones de un solo día en España:</h2>
+    <div class="tour-container">
     <?php echo $results_html; ?>
 
 </body>

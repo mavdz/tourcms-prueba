@@ -2,7 +2,7 @@
 //Cargar el archivo TourCMS.php para importar las funciones, clases, etc. ya definidas en dicho archivo
 require_once "TourCMS.php";
 
-//Insertar credenciales a continuación (las he borrado intencionadamente antes de cada commit y push por motivos de seguridad) para conectarme a la API
+//Insertar credenciales a continuación (las he borrado intencionadamente antes de cada commit y cada push por motivos de seguridad) para conectarme a la API
 $marketplace_id = ;
 $api_key = ;
 $channel_id = ;
@@ -29,7 +29,7 @@ $result = $tourcms->search_tours($params, $channel_id);
         $result = simplexml_load_string($result);
     }
 
-    // Procesar los resultados obtenidos
+    // Procesar los resultados obtenidos y escribir el código de HTML para mostrarlos en la web
     if ($result !== !empty($result) && isset($result->tour)) {
         foreach ($result->tour as $tour) {
             // Pedir a la API todos los detalles necesarios de cada tour para que aparezcan en la web
@@ -40,6 +40,16 @@ $result = $tourcms->search_tours($params, $channel_id);
             $duration_desc = (string) $tour->duration_desc;
             $location = (string) $tour->location;
             $from_price = (string) $tour->from_price;
+
+            // Utilizar la variable results_html para mostrar en la web cada uno de los resultados obtenidos de la búsqueda
+            $results_html .= "<div class='tour-item'>";
+            $results_html .= "<h3><a href='{$tour_url}' target='_blank'>{$tour_name}</a></h3>";
+            $results_html .= "<p><strong>Resumen:</strong> {$summary}</p>";
+            $results_html .= "<p><strong>Ubicación:</strong> {$location}</p>";
+            $results_html .= "<p><strong>Duración:</strong> {$duration_desc}</p>";
+            $results_html .= "<p><strong>Desde:</strong> {$from_price} EUR</p>";
+            $results_html .= "<img src='{$thumbnail_image}' alt='{$tour_name}' style='width: 200px; height: auto;'>";
+            $results_html .= "</div>";
             }
     } else {
             $results_html = "<p>No se encontraron resultados para '{$search_term}'.</p>";

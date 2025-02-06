@@ -19,3 +19,21 @@ $params = "product_type=4&country=ES&search=" . urlencode($search_term);
 
 // Hacer la call a la API utilizando la función search_tours
 $result = $tourcms->search_tours($params, $channel_id);
+
+?>
+
+<!-- Aquí dejo el código de una web sencilla que mostrará los resultados nada más abrirse-->
+<!DOCTYPE html>
+<html lang="en_GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tours, viajes, actividades y atracciones de un solo día en España</title>
+</head>
+<body>
+
+    <h2>Aquí tienes una lista con los tours, viajes, actividades y atracciones de un solo día en España:</h2>
+    <?php echo $results_html; ?>
+
+</body>
+</html>
